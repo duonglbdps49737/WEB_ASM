@@ -1,0 +1,426 @@
+/* ==========================================================================
+   TechGear Store - Responsive Stylesheet (css/responsive.css)
+   Assignment WEB1044 - Lập trình JavaScript cơ bản - FPT Polytechnic
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. MÀN HÌNH LAPTOP VỪA & NHỎ (DƯỚI 1200PX)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .nav-support {
+    display: none; /* Ẩn hotline trên nav để các tab menu không bị tràn hoặc ép dòng */
+  }
+
+  .nav-menu__link {
+    padding: 14px 12px;
+    font-size: 0.88rem;
+    gap: 6px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .checkout-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLET & IPAD (DƯỚI 992PX) - CHUYỂN SANG DRAWER MENU & CỘT ĐƠN
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  /* Ẩn topbar để màn hình thoáng hơn */
+  .top-bar {
+    display: none;
+  }
+
+  /* Header sắp xếp lại theo thứ tự mobile/tablet */
+  .header-main__inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    cursor: pointer;
+  }
+
+  .site-logo {
+    order: 2;
+    font-size: 1.35rem;
+  }
+
+  .header-actions {
+    order: 3;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  .header-search {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 4px;
+  }
+
+  /* Menu Drawer Mobile */
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    flex-direction: column;
+    padding: 24px 20px;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+  }
+
+  .main-nav.active {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+  }
+
+  .nav-overlay.active {
+    display: block;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .nav-menu__item {
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-menu__link {
+    padding: 14px 8px;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  .nav-menu__link::after {
+    display: none;
+  }
+
+  /* Grid Layouts chuyển về 1 cột */
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .filter-sidebar {
+    margin-bottom: 20px;
+  }
+
+  /* Chi tiết sản phẩm */
+  .product-detail-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 20px;
+  }
+
+  .gallery-main {
+    height: 350px;
+  }
+
+  .gallery-thumbnails {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 6px;
+  }
+
+  .gallery-thumb {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+  }
+
+  .detail-tabs-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .detail-tab-pane {
+    padding: 24px 18px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Giỏ hàng & Thanh toán */
+  .cart-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .cart-table-card {
+    overflow-x: auto;
+    padding: 16px;
+  }
+
+  .cart-table {
+    min-width: 520px;
+  }
+
+  .checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  /* Banner Slider */
+  .slider-container {
+    height: 340px;
+  }
+
+  .slider-title {
+    font-size: 1.8rem;
+  }
+
+  .slider-desc {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* User Dashboard & Auth */
+  .dashboard-info-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. TABLET NHỎ & SMARTPHONE (DƯỚI 768PX)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .action-btn__text {
+    display: none; /* Ẩn bớt chữ, chỉ hiện icon để gọn gàng */
+  }
+
+  .action-btn {
+    padding: 8px 10px;
+  }
+
+  .user-logged-btn .action-btn__text {
+    display: none;
+  }
+
+  .slider-container {
+    height: 280px;
+  }
+
+  .slider-title {
+    font-size: 1.4rem;
+  }
+
+  .slider-price {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
+
+  .slider-price__new {
+    font-size: 1.15rem;
+  }
+
+  .slider-slide__content {
+    padding: 0 20px;
+  }
+
+  .slider-control {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .detail-title {
+    font-size: 1.35rem;
+  }
+
+  .detail-price-current {
+    font-size: 1.55rem;
+  }
+
+  .detail-cta-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .detail-cta-row .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .dashboard-tags {
+    justify-content: center;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+  }
+
+  .dashboard-actions .btn {
+    width: 100%;
+  }
+
+  .footer-bottom__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. SMARTPHONE NHỎ (DƯỚI 480PX)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__content {
+    padding: 12px 10px;
+  }
+
+  .product-card__title {
+    font-size: 0.85rem;
+    min-height: 2.8em;
+  }
+
+  .price-current {
+    font-size: 0.95rem;
+  }
+
+  .price-old {
+    font-size: 0.75rem;
+  }
+
+  .slider-container {
+    height: 230px;
+  }
+
+  .slider-tag {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+    margin-bottom: 4px;
+  }
+
+  .slider-title {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .slider-desc {
+    display: none;
+  }
+
+  .slider-slide__content .btn {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+
+  .auth-wrapper {
+    margin: 20px 8px;
+    border-radius: var(--radius-md);
+  }
+
+  .auth-tabs-container {
+    padding: 14px 16px 0;
+  }
+
+  .auth-tab {
+    padding: 9px 10px;
+    font-size: 0.85rem;
+  }
+
+  .auth-body {
+    padding: 20px 16px;
+  }
+
+  .user-dashboard-card {
+    margin: 20px 8px;
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .gallery-main {
+    height: 260px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

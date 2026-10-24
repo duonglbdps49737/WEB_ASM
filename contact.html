@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liên Hệ & Góp Ý - TechGear Store</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="contact"></header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Liên hệ & Góp ý</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTACT CONTENT -->
+  <main id="main-content" class="container section" style="padding-top: 10px;">
+    <div class="section-header">
+      <h1 class="section-title">
+        <i class="fa-solid fa-headset"></i> Trung Tâm Hỗ Trợ & Liên Hệ
+      </h1>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; margin-top: 10px;">
+      
+      <!-- CỘT TRÁI: THÔNG TIN SHOWROOM -->
+      <div>
+        <div style="background-color: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 30px; box-shadow: var(--shadow-sm); margin-bottom: 24px;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; color: var(--text-main);">
+            Hệ Thống Trụ Sở Chính
+          </h3>
+
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <strong style="display: block; font-size: 0.95rem; margin-bottom: 3px;">Địa chỉ Showroom:</strong>
+                <span style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Tòa nhà FPT Polytechnic, Phố Trịnh Văn Bô, Phường Phương Canh, Quận Nam Từ Liêm, Hà Nội</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <strong style="display: block; font-size: 0.95rem; margin-bottom: 3px;">Tổng đài hỗ trợ:</strong>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">Tư vấn bán hàng: <strong>1900 6868</strong><br>Hỗ trợ kỹ thuật: <strong>1800 6969</strong></span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <strong style="display: block; font-size: 0.95rem; margin-bottom: 3px;">Email liên hệ:</strong>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">contact@techgear.fpt.edu.vn</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 44px; height: 44px; border-radius: var(--radius-md); background-color: var(--primary-light); color: var(--primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <strong style="display: block; font-size: 0.95rem; margin-bottom: 3px;">Thời gian mở cửa:</strong>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">Thứ Hai - Chủ Nhật: <strong>08:00 - 21:30</strong> (Cả ngày lễ)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP BẢN ĐỒ VỊ TRÍ -->
+        <div style="background-color: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color); overflow: hidden; box-shadow: var(--shadow-sm); height: 220px; position: relative;">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.86385588145!2d105.74459841540242!3d21.038132792834316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b991d80fd5%3A0x1034893054427da4!2zVHLGsOG7nW5nIENhbyDEkeG6s25nIEZQVCBQb2x5dGVjaG5pYw!5e0!3m2!1svi!2s!4v1689234567890!5m2!1svi!2s" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- CỘT PHẢI: FORM GỬI THÔNG ĐIỆP (KIỂM TRA VALIDATION BẰNG validation.js) -->
+      <div style="background-color: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 36px; box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">
+          Gửi Ý Kiến & Yêu Cầu Hỗ Trợ
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">
+          Bạn có thắc mắc hoặc cần tư vấn sản phẩm? Hãy điền vào biểu mẫu bên dưới, chúng tôi sẽ phản hồi trong vòng 24 giờ.
+        </p>
+
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="contactName" class="form-label">
+              Họ và tên <span class="required">*</span>
+            </label>
+            <input type="text" id="contactName" class="form-input" placeholder="Ví dụ: Nguyễn Văn A">
+            <div class="error-message"></div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label for="contactEmail" class="form-label">
+                Địa chỉ Email <span class="required">*</span>
+              </label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="example@email.com">
+              <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactPhone" class="form-label">
+                Số điện thoại
+              </label>
+              <input type="tel" id="contactPhone" class="form-input" placeholder="0988xxxxxx">
+              <div class="error-message"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject" class="form-label">
+              Chủ đề liên hệ <span class="required">*</span>
+            </label>
+            <input type="text" id="contactSubject" class="form-input" placeholder="Tư vấn mua trả góp / Bảo hành sản phẩm...">
+            <div class="error-message"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage" class="form-label">
+              Nội dung tin nhắn <span class="required">*</span>
+            </label>
+            <textarea id="contactMessage" class="form-textarea" placeholder="Nhập chi tiết nội dung cần hỗ trợ (tối thiểu 10 ký tự)..."></textarea>
+            <div class="error-message"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top: 10px;">
+            <i class="fa-regular fa-paper-plane"></i> Gửi Tin Nhắn Ngay
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

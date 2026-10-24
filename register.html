@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tài Khoản - Đăng Ký & Đăng Nhập | TechGear Store</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="auth"></header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span id="authBreadcrumbTitle">Đăng ký & Đăng nhập</span>
+    </div>
+  </div>
+
+  <!-- MAIN AUTH CONTENT -->
+  <main id="main-content" class="container section" style="padding-top: 10px;">
+    
+    <!-- 1. GIAO DIỆN HỒ SƠ TÀI KHOẢN (Tự động hiển thị khi ĐÃ ĐĂNG NHẬP) -->
+    <div id="userProfileDashboard" class="user-dashboard-card" style="display: none;">
+      <!-- Nội dung được render tự động bằng JavaScript trong validation.js -->
+    </div>
+
+    <!-- 2. GIAO DIỆN FORM ĐĂNG KÝ / ĐĂNG NHẬP (Chỉ hiển thị khi CHƯA ĐĂNG NHẬP) -->
+    <div id="authWrapperBox" class="auth-wrapper">
+      
+      <!-- CÁC TAB CHUYỂN ĐỔI DẠNG SEGMENTED PILL HIỆN ĐẠI -->
+      <div class="auth-tabs-container">
+        <div class="auth-tabs" role="tablist">
+          <div class="auth-tab" data-target="registerTabContent" role="tab" aria-selected="false">
+            <i class="fa-solid fa-user-plus"></i> Đăng Ký Tài Khoản
+          </div>
+          <div class="auth-tab active" data-target="loginTabContent" role="tab" aria-selected="true">
+            <i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-body">
+        
+        <!-- 1. TAB NỘI DUNG ĐĂNG KÝ -->
+        <div id="registerTabContent" class="auth-tab-content" style="display: none;">
+          <form id="registerForm" novalidate>
+            <!-- Họ và tên -->
+            <div class="form-group">
+              <label for="regFullname" class="form-label">
+                Họ và tên của bạn <span class="required">*</span>
+              </label>
+              <input type="text" id="regFullname" class="form-input" placeholder="Ví dụ: Nguyễn Văn Hoàng">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="regEmail" class="form-label">
+                Địa chỉ Email <span class="required">*</span>
+              </label>
+              <input type="email" id="regEmail" class="form-input" placeholder="example@email.com">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="form-group">
+              <label for="regPhone" class="form-label">
+                Số điện thoại (10 số) <span class="required">*</span>
+              </label>
+              <input type="tel" id="regPhone" class="form-input" placeholder="0988xxxxxx">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+              <label for="regPassword" class="form-label">
+                Mật khẩu (Tối thiểu 6 ký tự) <span class="required">*</span>
+              </label>
+              <input type="password" id="regPassword" class="form-input" placeholder="••••••••">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Xác nhận mật khẩu -->
+            <div class="form-group">
+              <label for="regConfirmPassword" class="form-label">
+                Xác nhận lại mật khẩu <span class="required">*</span>
+              </label>
+              <input type="password" id="regConfirmPassword" class="form-input" placeholder="••••••••">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Đồng ý điều khoản -->
+            <div class="form-group">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="regTerms">
+                <span>Tôi đồng ý với các <a href="#" style="color: var(--primary-color); font-weight: 600;">Điều khoản sử dụng</a> và <a href="#" style="color: var(--primary-color); font-weight: 600;">Chính sách bảo mật</a> của TechGear Store.</span>
+              </label>
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Nút Đăng Ký -->
+            <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 10px;">
+              <i class="fa-solid fa-user-check"></i> Đăng Ký Tài Khoản Ngay
+            </button>
+          </form>
+        </div>
+
+        <!-- 2. TAB NỘI DUNG ĐĂNG NHẬP -->
+        <div id="loginTabContent" class="auth-tab-content">
+          <form id="loginForm" novalidate>
+            <!-- Email Đăng Nhập -->
+            <div class="form-group">
+              <label for="loginEmail" class="form-label">
+                Địa chỉ Email <span class="required">*</span>
+              </label>
+              <input type="email" id="loginEmail" class="form-input" placeholder="student@fpt.edu.vn">
+              <div class="error-message"></div>
+            </div>
+
+            <!-- Mật Khẩu -->
+            <div class="form-group">
+              <label for="loginPassword" class="form-label">
+                Mật khẩu <span class="required">*</span>
+              </label>
+              <input type="password" id="loginPassword" class="form-input" placeholder="••••••••">
+              <div class="error-message"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.88rem;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                <input type="checkbox" checked style="accent-color: var(--primary-color);"> Ghi nhớ đăng nhập
+              </label>
+              <a href="#" style="color: var(--primary-color); font-weight: 600;" onclick="event.preventDefault(); window.showToast('Quên mật khẩu', 'Vui lòng liên hệ tổng đài 1900 6868 để lấy lại mật khẩu!', 'info');">
+                Quên mật khẩu?
+              </a>
+            </div>
+
+            <!-- Nút Đăng Nhập -->
+            <button type="submit" class="btn btn-primary btn-block btn-lg">
+              <i class="fa-solid fa-right-to-bracket"></i> Đăng Nhập
+            </button>
+
+            <!-- Gợi ý tài khoản mẫu phục vụ chấm bài -->
+            <div style="margin-top: 20px; padding: 14px; background: #eff6ff; border-radius: var(--radius-sm); border: 1px dashed #93c5fd; font-size: 0.85rem; color: #1e40af; line-height: 1.5;">
+              <i class="fa-solid fa-circle-info"></i> <strong>Tài khoản có sẵn để test nhanh:</strong><br>
+              Email: <code>student@fpt.edu.vn</code> | Mật khẩu: <code>password123</code><br>
+              <span style="font-size: 0.78rem; color: #64748b;">(Hoặc bạn có thể qua tab "Đăng Ký Tài Khoản" để tạo tài khoản mới lưu vào localStorage).</span>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

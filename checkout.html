@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh Toán Đơn Hàng - TechGear Store</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="checkout"></header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <a href="cart.html">Giỏ hàng</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span>Thanh toán đơn hàng</span>
+    </div>
+  </div>
+
+  <!-- MAIN CHECKOUT CONTENT (LAB 7: LOCALSTORAGE & SESSIONSTORAGE THANH TOÁN) -->
+  <main id="main-content" class="container section" style="padding-top: 10px;">
+    <div class="section-header">
+      <h1 class="section-title">
+        <i class="fa-solid fa-credit-card" aria-hidden="true"></i> Thông Tin Thanh Toán & Giao Hàng
+      </h1>
+    </div>
+
+    <div id="checkoutContainer">
+      <div class="checkout-grid">
+        
+        <!-- CỘT TRÁI: FORM THÔNG TIN NGƯỜI NHẬN & PHƯƠNG THỨC THANH TOÁN -->
+        <div style="background-color: var(--bg-card); border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 30px; box-shadow: var(--shadow-sm);">
+          <form id="orderForm" novalidate>
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); color: var(--text-main);">
+              <i class="fa-solid fa-truck-ramp-box"></i> 1. Địa Chỉ Nhận Hàng
+            </h3>
+
+            <!-- Họ và tên người nhận -->
+            <div class="form-group">
+              <label for="orderFullname" class="form-label">
+                Họ và tên người nhận <span class="required">*</span>
+              </label>
+              <input type="text" id="orderFullname" class="form-input" placeholder="Ví dụ: Nguyễn Văn Hoàng" required>
+            </div>
+
+            <!-- Số điện thoại & Email -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label for="orderPhone" class="form-label">
+                  Số điện thoại liên hệ <span class="required">*</span>
+                </label>
+                <input type="tel" id="orderPhone" class="form-input" placeholder="0988xxxxxx" required>
+              </div>
+
+              <div class="form-group">
+                <label for="orderEmail" class="form-label">
+                  Email nhận thông báo <span class="required">*</span>
+                </label>
+                <input type="email" id="orderEmail" class="form-input" placeholder="example@email.com" required>
+              </div>
+            </div>
+
+            <!-- Địa chỉ giao hàng chi tiết -->
+            <div class="form-group">
+              <label for="orderAddress" class="form-label">
+                Địa chỉ giao hàng (Số nhà, đường, phường, quận/huyện, tỉnh/thành) <span class="required">*</span>
+              </label>
+              <input type="text" id="orderAddress" class="form-input" placeholder="Ví dụ: Tòa nhà FPT Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm, Hà Nội" required>
+            </div>
+
+            <!-- Ghi chú đơn hàng -->
+            <div class="form-group">
+              <label for="orderNote" class="form-label">Ghi chú giao hàng (Tùy chọn)</label>
+              <textarea id="orderNote" class="form-input" rows="2" placeholder="Ví dụ: Giao vào giờ hành chính, gọi trước khi đến 15 phút..."></textarea>
+            </div>
+
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-top: 28px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); color: var(--text-main);">
+              <i class="fa-solid fa-wallet"></i> 2. Phương Thức Thanh Toán (LAB 6: Sự kiện Change)
+            </h3>
+
+            <!-- Lựa chọn thanh toán 1: COD -->
+            <label class="payment-method-card active">
+              <input type="radio" name="paymentMethod" value="cod" checked>
+              <div>
+                <div style="font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                  <i class="fa-solid fa-money-bill-wave" style="color: var(--success-color);"></i> Thanh toán tiền mặt khi nhận hàng (COD)
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                  Kiểm tra hàng thoải mái trước khi thanh toán cho nhân viên giao hàng.
+                </div>
+              </div>
+            </label>
+
+            <!-- Lựa chọn thanh toán 2: Chuyển khoản VietQR -->
+            <label class="payment-method-card">
+              <input type="radio" name="paymentMethod" value="banking">
+              <div style="width: 100%;">
+                <div style="font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                  <i class="fa-solid fa-qrcode" style="color: var(--primary-color);"></i> Chuyển khoản ngân hàng qua VietQR (Khuyên dùng)
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">
+                  Quét mã QR bằng ứng dụng ngân hàng bất kỳ (VCB, MB, Techcombank, TPBank...).
+                </div>
+                <!-- Box thông tin tài khoản hiển thị khi chọn -->
+                <div id="qrTransferInfo" class="qr-transfer-info">
+                  <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                    <div style="background: #ffffff; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-align: center;">
+                      <i class="fa-solid fa-qrcode" style="font-size: 3.5rem; color: var(--primary-color);"></i>
+                      <div style="font-size: 0.72rem; font-weight: 700; margin-top: 4px;">QUÉT MÃ QR</div>
+                    </div>
+                    <div>
+                      <div>Ngân hàng: <strong>Ngân hàng Quân Đội (MB Bank)</strong></div>
+                      <div>Số tài khoản: <strong style="color: var(--primary-color); font-size: 1.05rem;">0988 123 456</strong></div>
+                      <div>Chủ tài khoản: <strong>CÔNG TY TNHH TECHGEAR VIETNAM</strong></div>
+                      <div>Cú pháp: <strong>TG [Họ tên] [SĐT]</strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <!-- Nút Xác nhận đặt hàng (LAB 6: Sự kiện submit) -->
+            <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 24px; padding: 16px;">
+              <i class="fa-solid fa-lock"></i> Xác Nhận Đặt Hàng Ngay
+            </button>
+          </form>
+        </div>
+
+        <!-- CỘT PHẢI: TÓM TẮT ĐƠN HÀNG LẤY TỪ LOCALSTORAGE (LAB 7) -->
+        <aside class="cart-summary-card" aria-label="Tóm tắt đơn hàng thanh toán">
+          <h3 class="cart-summary-title">Đơn Hàng Của Bạn</h3>
+
+          <!-- Danh sách sản phẩm từ cart.js -->
+          <div id="checkoutOrderItems" style="max-height: 280px; overflow-y: auto; margin-bottom: 16px; padding-right: 4px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Đang tải danh sách hàng...</p>
+          </div>
+
+          <div class="summary-row">
+            <span>Tạm tính tiền hàng:</span>
+            <span id="checkoutSubtotal" style="font-weight: 700; color: var(--text-main);">0đ</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Giảm giá (Voucher):</span>
+            <span id="checkoutDiscount" style="font-weight: 700; color: var(--success-color);">0đ</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Phí vận chuyển:</span>
+            <span id="checkoutShipping" style="font-weight: 700; color: var(--success-color);">Miễn phí</span>
+          </div>
+
+          <div class="summary-row total-row">
+            <span>Tổng thanh toán:</span>
+            <span id="checkoutTotal" class="summary-total-price">0đ</span>
+          </div>
+
+          <div style="margin-top: 20px; padding: 14px; background: #f8fafc; border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">
+            <i class="fa-solid fa-circle-info" style="color: var(--primary-color);"></i>
+            Sau khi bấm đặt hàng, hệ thống sẽ lưu đơn hàng vào máy của bạn (localStorage) và gửi mã vận đơn xác nhận.
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <!-- Scripts: Tuân thủ thứ tự nạp module -->
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

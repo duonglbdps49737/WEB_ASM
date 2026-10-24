@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Sản Phẩm | TechGear Store</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="detail"></header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <a href="products.html" id="detailBreadcrumbCat">Thiết Bị Công Nghệ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <span id="detailBreadcrumbName">Chi tiết sản phẩm</span>
+    </div>
+  </div>
+
+  <!-- MAIN PRODUCT DETAIL (LAB 5: SHOW NHIỀU SESSION DỮ LIỆU ĐA DẠNG) -->
+  <main id="main-content" class="container">
+    
+    <!-- ========================================================
+         SESSION 1: CHI TIẾT SẢN PHẨM CHÍNH & GALLERY ẢNH
+         ======================================================== -->
+    <div class="product-detail-layout" style="margin-bottom: 30px;">
+      
+      <!-- CỘT TRÁI: GALLERY ĐỔI ẢNH (gallery.js & products.js) -->
+      <div class="detail-gallery">
+        <div class="gallery-main">
+          <img id="mainProductImg" src="images/products/iphone15.jpg" alt="Sản phẩm chính" class="gallery-main__img">
+        </div>
+
+        <!-- Dải ảnh thumbnails nhỏ đổi theo từng sản phẩm -->
+        <div class="gallery-thumbnails" id="detailThumbnails">
+          <div class="gallery-thumb active" title="Ảnh góc 1">
+            <img src="images/products/iphone15.jpg" alt="Thumb 1">
+          </div>
+          <div class="gallery-thumb" title="Ảnh góc 2">
+            <img src="images/products/detail-thumb1.jpg" alt="Thumb 2">
+          </div>
+          <div class="gallery-thumb" title="Ảnh góc 3">
+            <img src="images/products/detail-thumb2.jpg" alt="Thumb 3">
+          </div>
+          <div class="gallery-thumb" title="Ảnh góc 4">
+            <img src="images/products/detail-thumb3.jpg" alt="Thumb 4">
+          </div>
+        </div>
+      </div>
+
+      <!-- CỘT PHẢI: THÔNG TIN VÀ NÚT ĐẶT HÀNG (LAB 7 - localStorage) -->
+      <div class="detail-info">
+        <div class="detail-badge-row">
+          <span class="product-card__badge" style="position: static;">Chính Hãng 100%</span>
+          <span class="product-card__badge product-card__badge--new" style="position: static;">Bảo hành 12 tháng</span>
+        </div>
+
+        <!-- LAB 5 & LAB 7: KHỐI HIỂN THỊ DỮ LIỆU PHIÊN (SESSION SHOW DỮ LIỆU) -->
+        <div id="detailSessionInfoBox" class="detail-session-box" style="margin-top: 10px; margin-bottom: 12px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-sm); padding: 8px 14px; font-size: 0.82rem; color: #1e40af; display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+          <i class="fa-solid fa-server" style="color: var(--primary-color);"></i>
+          <span><strong>Dữ liệu phiên duyệt (sessionStorage):</strong> <span id="sessionDetailsText">Đang tải dữ liệu session...</span></span>
+        </div>
+
+        <h1 id="detailProductTitle" class="detail-title">Đang tải sản phẩm...</h1>
+
+        <div class="detail-meta-row">
+          <div class="rating-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <span style="color: var(--text-muted); font-size: 0.85rem; margin-left: 4px;">(Đánh giá 5 sao)</span>
+          </div>
+          <div>Mã SP: <strong id="detailProductCode">TG-PROD-2026</strong></div>
+          <div>Tình trạng: <span style="color: var(--success-color); font-weight: 700;">Còn hàng (Sẵn sàng giao)</span></div>
+        </div>
+
+        <!-- Khối giá -->
+        <div class="detail-price-box">
+          <span id="detailPriceCurrent" class="detail-price-current">0đ</span>
+          <span id="detailPriceOld" class="detail-price-old"></span>
+          <span id="detailDiscountTag" class="detail-discount-tag" style="display: none;"></span>
+        </div>
+
+        <!-- SESSION 2: KHỐI ƯU ĐÃI & KHUYẾN MÃI ĐẶC QUYỀN (products.js đổ dữ liệu) -->
+        <div id="detailPromoBox" class="detail-promo-card">
+          <!-- Tự động đổ dữ liệu ưu đãi từ JS -->
+        </div>
+
+        <!-- Tùy chọn cấu hình / màu sắc -->
+        <div class="detail-option-group">
+          <div class="detail-option-label">
+            Chọn phiên bản / màu sắc: 
+            <span id="sessionSelectedVariantText" style="font-weight: 500; color: var(--primary-color); font-size: 0.85rem; margin-left: 6px;"></span>
+          </div>
+          <div class="option-pills" id="detailVariantPills">
+            <div class="option-pill active" data-variant="Bản Tiêu Chuẩn">Bản Tiêu Chuẩn</div>
+            <div class="option-pill" data-variant="Bản Nâng Cấp (+1.000.000đ)">Bản Nâng Cấp (+1.000.000đ)</div>
+            <div class="option-pill" data-variant="Bản Cao Cấp (+2.500.000đ)">Bản Cao Cấp (+2.500.000đ)</div>
+          </div>
+        </div>
+
+        <!-- Bộ chọn số lượng (+/-) -->
+        <div class="detail-option-group">
+          <div class="detail-option-label">Số lượng mua:</div>
+          <div class="qty-picker">
+            <button type="button" class="qty-btn qty-minus" aria-label="Giảm"><i class="fa-solid fa-minus"></i></button>
+            <input type="number" class="qty-input" value="1" min="1" max="99" aria-label="Số lượng mua">
+            <button type="button" class="qty-btn qty-plus" aria-label="Tăng"><i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+
+        <!-- Nút Đặt Mua & Thêm Giỏ Hàng (LAB 7: Gắn vào localStorage) -->
+        <div class="detail-cta-row">
+          <!-- LAB 6: Sự kiện click Thêm giỏ hàng -->
+          <button type="button" id="btnDetailAddCart" class="btn btn-outline btn-add-cart" style="padding: 14px 24px;">
+            <i class="fa-solid fa-cart-plus"></i> Thêm Vào Giỏ Hàng
+          </button>
+          <!-- LAB 6: Sự kiện click Mua ngay chuyển sang checkout.html -->
+          <button type="button" id="btnDetailBuyNow" class="btn btn-primary" style="padding: 14px 24px;">
+            <i class="fa-solid fa-bolt"></i> Mua Ngay (Thanh Toán)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         SESSION 3: CÁC TAB NỘI DUNG ĐA DẠNG (LAB 5 TABS NAVIGATION)
+         ======================================================== -->
+    <div class="detail-tabs-wrapper">
+      <div class="detail-tabs-nav" role="tablist" aria-label="Các thông tin chi tiết sản phẩm">
+        <!-- LAB 6: Sự kiện click chuyển tab -->
+        <button type="button" class="detail-tab-btn active" data-target="tabPaneDescription" role="tab" aria-selected="true">
+          <i class="fa-solid fa-circle-info"></i> Đặc Điểm Nổi Bật
+        </button>
+        <button type="button" class="detail-tab-btn" data-target="tabPaneSpecs" role="tab" aria-selected="false">
+          <i class="fa-solid fa-sliders"></i> Thông Số Kỹ Thuật
+        </button>
+        <button type="button" class="detail-tab-btn" data-target="tabPaneReviews" role="tab" aria-selected="false">
+          <i class="fa-solid fa-star"></i> Đánh Giá & Nhận Xét
+        </button>
+        <button type="button" class="detail-tab-btn" data-target="tabPaneWarranty" role="tab" aria-selected="false">
+          <i class="fa-solid fa-shield-halved"></i> Chính Sách Bảo Hành
+        </button>
+      </div>
+
+      <!-- Tab 1: Đặc điểm nổi bật (products.js đổ dữ liệu) -->
+      <div class="detail-tab-pane active" id="tabPaneDescription" role="tabpanel">
+        <p>Đang tải mô tả đặc điểm nổi bật...</p>
+      </div>
+
+      <!-- Tab 2: Thông số kỹ thuật (products.js đổ bảng cấu hình) -->
+      <div class="detail-tab-pane" id="tabPaneSpecs" role="tabpanel">
+        <p>Đang tải thông số kỹ thuật...</p>
+      </div>
+
+      <!-- Tab 3: Đánh giá & Bình luận khách hàng tương tác (LAB 6 & LAB 7) -->
+      <div class="detail-tab-pane" id="tabPaneReviews" role="tabpanel">
+        <p>Đang tải đánh giá khách hàng...</p>
+      </div>
+
+      <!-- Tab 4: Chính sách bảo hành & Đổi trả -->
+      <div class="detail-tab-pane" id="tabPaneWarranty" role="tabpanel">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; color: var(--text-main);">
+          <i class="fa-solid fa-shield-halved" style="color: var(--success-color);"></i> Cam Kết Bảo Hành & Dịch Vụ Hậu Mãi
+        </h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 24px;">
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 1.6rem; color: var(--primary-color); margin-bottom: 10px;">
+              <i class="fa-solid fa-arrow-rotate-left"></i>
+            </div>
+            <h4 style="font-weight: 700; font-size: 1rem; margin-bottom: 6px;">Lỗi 1 Đổi 1 Trong 30 Ngày</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Nếu sản phẩm phát sinh lỗi phần cứng từ nhà sản xuất, quý khách được đổi máy mới 100% ngay lập tức.</p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 1.6rem; color: var(--success-color); margin-bottom: 10px;">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h4 style="font-weight: 700; font-size: 1rem; margin-bottom: 6px;">Bảo Hành 12 Tháng Chính Hãng</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Bảo hành toàn diện tại tất cả trung tâm bảo hành ủy quyền của hãng trên cả nước hoặc tại Showroom TechGear.</p>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px;">
+            <div style="font-size: 1.6rem; color: #f59e0b; margin-bottom: 10px;">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <h4 style="font-weight: 700; font-size: 1rem; margin-bottom: 6px;">Hỗ Trợ Kỹ Thuật Trọn Đời</h4>
+            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">Hỗ trợ cài đặt phần mềm, vệ sinh máy định kỳ và tư vấn kỹ thuật hoàn toàn miễn phí trọn đời sử dụng.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         SESSION 4: SẢN PHẨM CÙNG LOẠI / TƯƠNG TỰ (LAB 5)
+         ======================================================== -->
+    <section class="section" style="margin-bottom: 40px;">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Sản Phẩm Cùng Loại / Tương Tự
+        </h2>
+        <a href="products.html" class="section-link">Xem tất cả <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="product-grid" id="relatedProductsGrid"></div>
+    </section>
+
+    <!-- ========================================================
+         SESSION 5: SẢN PHẨM ĐÃ XEM GẦN ĐÂY (LAB 7 - localStorage)
+         ======================================================== -->
+    <section class="section" id="recentlyViewedSection" style="margin-bottom: 60px;">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Sản Phẩm Bạn Đã Xem Gần Đây
+        </h2>
+      </div>
+      <div class="product-grid" id="recentlyViewedGrid"></div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <!-- Scripts: Tuân thủ thứ tự nạp module -->
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

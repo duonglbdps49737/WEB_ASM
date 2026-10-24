@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh Sách Sản Phẩm - TechGear Store</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="products"></header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Trang chủ</a>
+      <i class="fa-solid fa-chevron-right"></i>
+      <a href="products.html" id="shopBreadcrumbBase">Danh sách sản phẩm</a>
+      <span id="shopBreadcrumbFilter" style="display: none;">
+        <i class="fa-solid fa-chevron-right" style="margin: 0 8px;"></i>
+        <span id="shopBreadcrumbCurrent" style="color: var(--primary-color); font-weight: 600;"></span>
+      </span>
+    </div>
+  </div>
+
+  <!-- SHOP MAIN CONTENT -->
+  <main id="main-content" class="section" style="padding-top: 10px;">
+    <div class="container">
+      <div class="shop-layout">
+        
+        <!-- SIDEBAR BỘ LỌC (LAB 6: Sự kiện Change lọc danh mục, giá, thương hiệu) -->
+        <aside class="filter-sidebar" aria-label="Bộ lọc sản phẩm">
+          <div class="filter-sidebar__header">
+            <h3 class="filter-sidebar__title">
+              <i class="fa-solid fa-filter" aria-hidden="true"></i> Bộ Lọc
+            </h3>
+            <button type="button" id="filterResetBtn" class="filter-reset-btn" title="Đặt lại tất cả bộ lọc">
+              Đặt lại
+            </button>
+          </div>
+
+          <!-- Lọc Danh mục -->
+          <div class="filter-group">
+            <h4 class="filter-title">Danh Mục</h4>
+            <div class="filter-list">
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="dienthoai"> Điện thoại
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="laptop"> Laptop & MacBook
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="tainghe"> Tai nghe & Âm thanh
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="dongho"> Đồng hồ thông minh
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="banphim"> Bàn phím cơ & Chuột
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="category" value="maytinhbang"> Máy tính bảng
+              </label>
+            </div>
+          </div>
+
+          <!-- Lọc Mức giá -->
+          <div class="filter-group">
+            <h4 class="filter-title">Mức Giá</h4>
+            <div class="filter-list">
+              <label class="filter-item">
+                <input type="radio" name="price_range" value="all" checked> Tất cả mức giá
+              </label>
+              <label class="filter-item">
+                <input type="radio" name="price_range" value="under_5m"> Dưới 5 triệu
+              </label>
+              <label class="filter-item">
+                <input type="radio" name="price_range" value="5m_15m"> Từ 5 - 15 triệu
+              </label>
+              <label class="filter-item">
+                <input type="radio" name="price_range" value="15m_30m"> Từ 15 - 30 triệu
+              </label>
+              <label class="filter-item">
+                <input type="radio" name="price_range" value="over_30m"> Trên 30 triệu
+              </label>
+            </div>
+          </div>
+
+          <!-- Lọc Thương hiệu -->
+          <div class="filter-group">
+            <h4 class="filter-title">Thương Hiệu</h4>
+            <div class="filter-list">
+              <label class="filter-item">
+                <input type="checkbox" name="brand" value="Apple"> Apple
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="brand" value="Sony"> Sony
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="brand" value="Logitech"> Logitech
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="brand" value="AKKO"> AKKO
+              </label>
+              <label class="filter-item">
+                <input type="checkbox" name="brand" value="Samsung"> Samsung
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- KHU VỰC HIỂN THỊ SẢN PHẨM -->
+        <section class="shop-content">
+          <!-- Toolbar sắp xếp -->
+          <div class="shop-toolbar">
+            <div class="shop-toolbar__count" id="shopToolbarCount">
+              Đang tải danh sách sản phẩm...
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <label for="sortSelect" style="font-size: 0.88rem; color: var(--text-muted); font-weight: 600;">Sắp xếp:</label>
+              <select id="sortSelect" class="shop-sort-select">
+                <option value="featured">Nổi bật nhất</option>
+                <option value="price_asc">Giá: Thấp đến Cao</option>
+                <option value="price_desc">Giá: Cao đến Thấp</option>
+                <option value="rating">Đánh giá tốt nhất</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Grid Sản phẩm đổ tự động từ mảng JavaScript thuần -->
+          <div id="danhSachSanPhamShop" class="product-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+
+          <!-- Phân trang (Pagination) -->
+          <div class="pagination">
+            <button class="page-btn"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

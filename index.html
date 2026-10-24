@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechGear Store - Cửa Hàng Thiết Bị & Phụ Kiện Công Nghệ Chính Hãng</title>
+  
+  <!-- Google Fonts & Font Awesome 6 Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Skip Link cho người dùng bàn phím (WCAG 2.1 AA) -->
+  <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+  <!-- HỆ THỐNG HEADER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <header id="siteHeader" data-active="home"></header>
+
+  <!-- PHẦN THÂN TRANG (MAIN CONTENT) -->
+  <main id="main-content">
+    <!-- 4. BANNER SLIDESHOW COMPONENT -->
+    <section class="container">
+      <div class="slider-wrapper">
+        <div class="slider-container">
+          <!-- Slide 1 -->
+          <div class="slider-slide active">
+            <img src="images/banners/banner1.jpg" alt="Banner iPhone 15 Pro Max" class="slider-slide__img">
+            <div class="slider-slide__overlay"></div>
+            <div class="slider-slide__content">
+              <span class="slider-tag">Siêu Phẩm Công Nghệ</span>
+              <h2 class="slider-title">iPhone 15 Pro Max Titan</h2>
+              <p class="slider-desc">Khung viền Titan chuẩn hàng không vũ trụ, chip A17 Pro siêu mạnh mẽ và camera tiềm vọng zoom 5x đỉnh cao.</p>
+              <div class="slider-price">
+                Chỉ từ: <span class="slider-price__new">29.990.000đ</span>
+                <span class="slider-price__old">34.990.000đ</span>
+              </div>
+              <a href="detail.html" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-bolt"></i> Khám Phá Ngay
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slider-slide">
+            <img src="images/banners/banner2.jpg" alt="Banner MacBook Pro M3" class="slider-slide__img">
+            <div class="slider-slide__overlay"></div>
+            <div class="slider-slide__content">
+              <span class="slider-tag">Hiệu Năng Đỉnh Cao</span>
+              <h2 class="slider-title">MacBook Pro 14 M3 Series</h2>
+              <p class="slider-desc">Màn hình Liquid Retina XDR 120Hz rực rỡ, pin bền bỉ đến 22 giờ liên tục. Tặng ngay Balo chống sốc thời thượng.</p>
+              <div class="slider-price">
+                Giá ưu đãi: <span class="slider-price__new">39.490.000đ</span>
+                <span class="slider-price__old">42.990.000đ</span>
+              </div>
+              <a href="products.html?category=laptop" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-cart-plus"></i> Mua Ngay Kẻo Lỡ
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slider-slide">
+            <img src="images/banners/banner3.jpg" alt="Banner Phụ Kiện Gaming" class="slider-slide__img">
+            <div class="slider-slide__overlay"></div>
+            <div class="slider-slide__content">
+              <span class="slider-tag">Lễ Hội Phụ Kiện</span>
+              <h2 class="slider-title">Gaming Gear & Âm Thanh</h2>
+              <p class="slider-desc">Bàn phím cơ Custom, Tai nghe chống ồn chủ động, Chuột gaming độ trễ siêu thấp. Giảm giá sốc đến 50%!</p>
+              <div class="slider-price">
+                Đồng giá từ: <span class="slider-price__new">490.000đ</span>
+              </div>
+              <a href="products.html?category=banphim" class="btn btn-accent btn-lg">
+                <i class="fa-solid fa-gift"></i> Nhận Khuyến Mãi
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nút Điều Hướng Next / Prev -->
+        <button class="slider-control slider-control--prev" aria-label="Slide trước">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="slider-control slider-control--next" aria-label="Slide tiếp theo">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Chấm Tròn Chỉ Số Slide (Dots Container) -->
+        <div class="slider-dots"></div>
+      </div>
+
+      <!-- 5. 4 CAM KẾT DỊCH VỤ -->
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <div>
+            <h4 class="feature-box__title">Giao Hàng Siêu Tốc 2H</h4>
+            <p class="feature-box__desc">Miễn phí giao nhanh nội thành</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <i class="fa-solid fa-rotate-left"></i>
+          </div>
+          <div>
+            <h4 class="feature-box__title">1 Đổi 1 Trong 30 Ngày</h4>
+            <p class="feature-box__desc">Lỗi nhà sản xuất đổi mới ngay</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div>
+            <h4 class="feature-box__title">Chính Hãng 100%</h4>
+            <p class="feature-box__desc">Bảo hành tại TTBH toàn quốc</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box__icon">
+            <i class="fa-solid fa-credit-card"></i>
+          </div>
+          <div>
+            <h4 class="feature-box__title">Trả Góp 0% Lãi Suất</h4>
+            <p class="feature-box__desc">Thủ tục duyệt nhanh trong 15p</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. DANH MỤC NỔI BẬT -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-layer-group"></i> Danh Mục Nổi Bật
+          </h2>
+          <a href="products.html" class="section-link">
+            Xem tất cả <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="category-grid">
+          <a href="products.html?category=dienthoai" class="category-card" data-category="dienthoai">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h4 class="category-card__name">Điện Thoại</h4>
+            <span class="category-card__count">iPhone, Samsung...</span>
+          </a>
+
+          <a href="products.html?category=laptop" class="category-card" data-category="laptop">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-laptop"></i>
+            </div>
+            <h4 class="category-card__name">Laptop</h4>
+            <span class="category-card__count">MacBook, Dell, HP...</span>
+          </a>
+
+          <a href="products.html?category=tainghe" class="category-card" data-category="tainghe">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+            <h4 class="category-card__name">Tai Nghe</h4>
+            <span class="category-card__count">AirPods, Sony XM5...</span>
+          </a>
+
+          <a href="products.html?category=dongho" class="category-card" data-category="dongho">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <h4 class="category-card__name">Đồng Hồ</h4>
+            <span class="category-card__count">Apple Watch...</span>
+          </a>
+
+          <a href="products.html?category=banphim" class="category-card" data-category="banphim">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-keyboard"></i>
+            </div>
+            <h4 class="category-card__name">Bàn Phím</h4>
+            <span class="category-card__count">AKKO, Logitech...</span>
+          </a>
+
+          <a href="products.html?category=maytinhbang" class="category-card" data-category="maytinhbang">
+            <div class="category-card__icon">
+              <i class="fa-solid fa-tablet-screen-button"></i>
+            </div>
+            <h4 class="category-card__name">Máy Tính Bảng</h4>
+            <span class="category-card__count">iPad Pro, Air...</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SẢN PHẨM BÁN CHẠY (FLASH SALE) -->
+    <section class="section section--gray">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fa-solid fa-fire text-danger"></i> Sản Phẩm Bán Chạy Nhất
+          </h2>
+          <a href="products.html" class="section-link">
+            Xem thêm sản phẩm <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Khung chứa danh sách sản phẩm đổ tự động bằng JavaScript thuần -->
+        <div id="danhSachSanPhamHome" class="product-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER ĐỒNG NHẤT (DRY COMPONENT - js/components.js) -->
+  <footer id="siteFooter" class="site-footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
